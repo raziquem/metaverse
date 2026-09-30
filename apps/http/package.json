@@ -5,7 +5,8 @@
   "main": "dist/index.js",
   "scripts": {
     "build": "tsc -b",
-    "start": "node dist/index.js"
+    "start": "node --env-file=../../packages/db/.env dist/index.js",
+    "dev": "npm run build && npm run start"
   },
   "keywords": [],
   "author": "",
@@ -13,8 +14,12 @@
   "type": "module",
   "dependencies": {
     "@metaverse/db": "*",
+    "@types/bcrypt": "^6.0.0",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
+    "bcrypt": "^6.0.0",
     "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
     "zod": "^4.6.5"
   }
 }
