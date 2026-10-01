@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { UpdateMetadataSchema } from "../../types/index.js";
+import { CreateAvatarSchema, UpdateMetadataSchema } from "../../types/index.js";
 import client from "@metaverse/db/client";
 import { userMiddleware } from "../../middleware/user.js";
  
@@ -21,6 +21,24 @@ userRouter.post("/metadata", userMiddleware, async (req, res) => {
     res.json({message: "Metadata updated"})
 })
 
-userRouter.get("/api/v1/user/metadata/bulk", (req, res) => {
+userRouter.get("/api/v1/user/metadata/bulk", async (req, res) => {
+    const userIdString = (req.query.ids ?? "[]") as string;
+    const userIds = (userIdString).slice(1, userIdString?.length - 2).split(",");
 
+    const metadata = await client.user.findMany({
+        where: {
+            id: {
+                in: userIds
+            }
+        }, select: {
+            avatar: true,
+            id: true
+        }
+    })
+    res.json({
+        avatars: metadata.map(m => ({
+            userId: m.id,
+            avatarId: m.avatar?.imageUrl
+        }))
+    })
 })
