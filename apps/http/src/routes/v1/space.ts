@@ -1,7 +1,7 @@
 import { Router, type Request } from "express";
 import { userMiddleware } from "../../middleware/user.js";
 import client from "@metaverse/db/client";
-import { AddElementSchema, CreateSpaceSchema } from "../../types/index.js";
+import { AddElementSchema, CreateSpaceSchema, DeleteElementSchema } from "../../types/index.js";
 import { parse } from "zod";
 
 
@@ -141,7 +141,32 @@ spaceRouter.post("/element", userMiddleware, async (req, res) => {
     res.json({message: "Element added"})
 })
 
-spaceRouter.delete("/elemet", (req, res) => {
+spaceRouter.delete("/elemet", userMiddleware, async (req, res) => {
+    const parsedData = DeleteElementSchema.safeParse(req.body)
+
+    if(!parsedData.success){
+        return res.status(400).json({message: "Validatin failed"})
+    }
+
+   const spaceElements = await client.spaceElements.findFirst({
+        where: {
+            id: parsedData.data.id,
+        }, include: {
+            space: true
+        }
+    })
+
+    if(!spaceElements?.space.creatorID || spaceElements.space.creatorID !== req.userId) {
+        return res.status(403).json({message: "Unauthorized"})
+    }
+
+    await client.spaceElements.delete({
+        where: {
+            id: req.body.spaceId
+        }
+    })
+
+    res.json({message: "Element deleted"})
 
 })
 
