@@ -1,7 +1,8 @@
 import { Router, type Request } from "express";
 import { userMiddleware } from "../../middleware/user.js";
 import client from "@metaverse/db/client";
-import { CreateSpaceSchema } from "../../types/index.js";
+import { AddElementSchema, CreateSpaceSchema } from "../../types/index.js";
+import { parse } from "zod";
 
 
 export const spaceRouter = Router();
@@ -108,8 +109,36 @@ spaceRouter.get("/:spaceId", (req, res) => {
 
 })
 
-spaceRouter.post("/element", (req, res) => {
+spaceRouter.post("/element", userMiddleware, async (req, res) => {
+    const parsedData = AddElementSchema.safeParse(req.body)
+    if(!parsedData.success){
+        return res.status(400).json({message: "Validation failed"})
+    }
 
+    const space = await client.space.findUnique({
+        where: {
+            id: req.body.spaceId,
+            creatorID: req.userId!
+        }, select: {
+            width: true,
+            height: true
+        }
+    })
+
+    if(!space){
+        return res.status(400).json({message: "Space not found"})
+    }
+
+    await client.spaceElements.create({
+        data: {
+            spaceId: req.body.spaceId,
+            elementId: req.body.spaceId,
+            x: req.body.x,
+            y: req.body.y
+        }
+    })
+
+    res.json({message: "Element added"})
 })
 
 spaceRouter.delete("/elemet", (req, res) => {
