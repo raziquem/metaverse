@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, type Request } from "express";
 import { userMiddleware } from "../../middleware/user.js";
 import client from "@metaverse/db/client";
 import { CreateSpaceSchema } from "../../types/index.js";
@@ -61,8 +61,30 @@ spaceRouter.post("/", userMiddleware, async (req, res) => {
     res.json({spaceId: space.id})
 })
 
-spaceRouter.delete("/:spaceId", (req, res) => {
+spaceRouter.delete("/:spaceId", userMiddleware, async (req: Request<{ spaceId: string }>, res) => {
+    const space = await client.space.findUnique({
+        where: {
+            id: req.params.spaceId
+        }, select: {
+            creatorID: true
+        }
+    })
 
+    if(!space){
+        return res.status(400).json({message: "Space not found"})
+    }
+
+    if(space.creatorID !== req.userId){
+        return res.status(403).json({message: "Unauithorized"})
+    }
+
+    await client.space.delete({
+        where: {
+            id: req.params.spaceId
+        }
+    })
+
+    res.json({message: "Space deleted"})
 })
 
 spaceRouter.get("/all", (req, res) => {
