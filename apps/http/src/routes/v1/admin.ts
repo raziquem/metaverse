@@ -12,7 +12,7 @@ adminRouter.post("/element", adminMiddleware, async (req, res) => {
         return res.status(400).json({message: "Validation failed"})
     }
 
-    await client.element.create({
+    const element = await client.element.create({
         data: {
             width: parsedData.data.width,
             height: parsedData.data.height,
@@ -21,7 +21,7 @@ adminRouter.post("/element", adminMiddleware, async (req, res) => {
         }
     })
 
-    res.json({message: "Element created"})
+    res.json({id: element.id})
 })
 
 adminRouter.put("/element/:elementId", (req, res) => {
