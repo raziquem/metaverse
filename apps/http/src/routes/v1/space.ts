@@ -105,8 +105,39 @@ spaceRouter.get("/all", userMiddleware, async (req, res) => {
     })
 })
 
-spaceRouter.get("/:spaceId", (req, res) => {
+spaceRouter.get("/:spaceId", async (req, res) => {
+    const space = await client.space.findUnique({
+        where: {
+            id: req.params.spaceId
+        }, include: {
+            elements: {
+                include: {
+                    element: true
+                }
+            },
 
+        }
+    })
+
+    if(!space) {
+        return res.status(400).json({message: "Space not found"})
+    }
+
+    res.json({
+        "dimensions": `${space.width}x${space.height}`,
+        elements: space.elements.map(e => ({
+            id: e.id,
+            element: {
+                id: e.element.id,
+                imageUrl: e.element.imageUrl,
+                width: e.element.width,
+                height: e.element.height,
+                static: e.element.static
+            },
+            x: e.x,
+            y: e.y
+        }))
+    })
 })
 
 spaceRouter.post("/element", userMiddleware, async (req, res) => {

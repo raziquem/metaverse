@@ -40,6 +40,7 @@ export type ElementMinAggregateOutputType = {
   id: string | null
   width: number | null
   height: number | null
+  static: boolean | null
   imageUrl: string | null
 }
 
@@ -47,6 +48,7 @@ export type ElementMaxAggregateOutputType = {
   id: string | null
   width: number | null
   height: number | null
+  static: boolean | null
   imageUrl: string | null
 }
 
@@ -54,6 +56,7 @@ export type ElementCountAggregateOutputType = {
   id: number
   width: number
   height: number
+  static: number
   imageUrl: number
   _all: number
 }
@@ -73,6 +76,7 @@ export type ElementMinAggregateInputType = {
   id?: true
   width?: true
   height?: true
+  static?: true
   imageUrl?: true
 }
 
@@ -80,6 +84,7 @@ export type ElementMaxAggregateInputType = {
   id?: true
   width?: true
   height?: true
+  static?: true
   imageUrl?: true
 }
 
@@ -87,6 +92,7 @@ export type ElementCountAggregateInputType = {
   id?: true
   width?: true
   height?: true
+  static?: true
   imageUrl?: true
   _all?: true
 }
@@ -181,6 +187,7 @@ export type ElementGroupByOutputType = {
   id: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
   _count: ElementCountAggregateOutputType | null
   _avg: ElementAvgAggregateOutputType | null
@@ -211,6 +218,7 @@ export type ElementWhereInput = {
   id?: Prisma.StringFilter<"Element"> | string
   width?: Prisma.IntFilter<"Element"> | number
   height?: Prisma.IntFilter<"Element"> | number
+  static?: Prisma.BoolFilter<"Element"> | boolean
   imageUrl?: Prisma.StringFilter<"Element"> | string
   spaces?: Prisma.SpaceElementsListRelationFilter
   mapElements?: Prisma.MapElementsListRelationFilter
@@ -220,6 +228,7 @@ export type ElementOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
+  static?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   spaces?: Prisma.spaceElementsOrderByRelationAggregateInput
   mapElements?: Prisma.MapElementsOrderByRelationAggregateInput
@@ -232,6 +241,7 @@ export type ElementWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.ElementWhereInput | Prisma.ElementWhereInput[]
   width?: Prisma.IntFilter<"Element"> | number
   height?: Prisma.IntFilter<"Element"> | number
+  static?: Prisma.BoolFilter<"Element"> | boolean
   imageUrl?: Prisma.StringFilter<"Element"> | string
   spaces?: Prisma.SpaceElementsListRelationFilter
   mapElements?: Prisma.MapElementsListRelationFilter
@@ -241,6 +251,7 @@ export type ElementOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
+  static?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
   _count?: Prisma.ElementCountOrderByAggregateInput
   _avg?: Prisma.ElementAvgOrderByAggregateInput
@@ -256,6 +267,7 @@ export type ElementScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Element"> | string
   width?: Prisma.IntWithAggregatesFilter<"Element"> | number
   height?: Prisma.IntWithAggregatesFilter<"Element"> | number
+  static?: Prisma.BoolWithAggregatesFilter<"Element"> | boolean
   imageUrl?: Prisma.StringWithAggregatesFilter<"Element"> | string
 }
 
@@ -263,6 +275,7 @@ export type ElementCreateInput = {
   id?: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
   spaces?: Prisma.spaceElementsCreateNestedManyWithoutElementInput
   mapElements?: Prisma.MapElementsCreateNestedManyWithoutElementInput
@@ -272,6 +285,7 @@ export type ElementUncheckedCreateInput = {
   id?: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
   spaces?: Prisma.spaceElementsUncheckedCreateNestedManyWithoutElementInput
   mapElements?: Prisma.MapElementsUncheckedCreateNestedManyWithoutElementInput
@@ -281,6 +295,7 @@ export type ElementUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   spaces?: Prisma.spaceElementsUpdateManyWithoutElementNestedInput
   mapElements?: Prisma.MapElementsUpdateManyWithoutElementNestedInput
@@ -290,6 +305,7 @@ export type ElementUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   spaces?: Prisma.spaceElementsUncheckedUpdateManyWithoutElementNestedInput
   mapElements?: Prisma.MapElementsUncheckedUpdateManyWithoutElementNestedInput
@@ -299,6 +315,7 @@ export type ElementCreateManyInput = {
   id?: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
 }
 
@@ -306,6 +323,7 @@ export type ElementUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -313,6 +331,7 @@ export type ElementUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
@@ -325,6 +344,7 @@ export type ElementCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
+  static?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
 }
 
@@ -337,6 +357,7 @@ export type ElementMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
+  static?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
 }
 
@@ -344,6 +365,7 @@ export type ElementMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
+  static?: Prisma.SortOrder
   imageUrl?: Prisma.SortOrder
 }
 
@@ -366,6 +388,10 @@ export type ElementUpdateOneRequiredWithoutSpacesNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ElementUpdateToOneWithWhereWithoutSpacesInput, Prisma.ElementUpdateWithoutSpacesInput>, Prisma.ElementUncheckedUpdateWithoutSpacesInput>
 }
 
+export type BoolFieldUpdateOperationsInput = {
+  set?: boolean
+}
+
 export type ElementCreateNestedOneWithoutMapElementsInput = {
   create?: Prisma.XOR<Prisma.ElementCreateWithoutMapElementsInput, Prisma.ElementUncheckedCreateWithoutMapElementsInput>
   connectOrCreate?: Prisma.ElementCreateOrConnectWithoutMapElementsInput
@@ -384,6 +410,7 @@ export type ElementCreateWithoutSpacesInput = {
   id?: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
   mapElements?: Prisma.MapElementsCreateNestedManyWithoutElementInput
 }
@@ -392,6 +419,7 @@ export type ElementUncheckedCreateWithoutSpacesInput = {
   id?: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
   mapElements?: Prisma.MapElementsUncheckedCreateNestedManyWithoutElementInput
 }
@@ -416,6 +444,7 @@ export type ElementUpdateWithoutSpacesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   mapElements?: Prisma.MapElementsUpdateManyWithoutElementNestedInput
 }
@@ -424,6 +453,7 @@ export type ElementUncheckedUpdateWithoutSpacesInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   mapElements?: Prisma.MapElementsUncheckedUpdateManyWithoutElementNestedInput
 }
@@ -432,6 +462,7 @@ export type ElementCreateWithoutMapElementsInput = {
   id?: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
   spaces?: Prisma.spaceElementsCreateNestedManyWithoutElementInput
 }
@@ -440,6 +471,7 @@ export type ElementUncheckedCreateWithoutMapElementsInput = {
   id?: string
   width: number
   height: number
+  static: boolean
   imageUrl: string
   spaces?: Prisma.spaceElementsUncheckedCreateNestedManyWithoutElementInput
 }
@@ -464,6 +496,7 @@ export type ElementUpdateWithoutMapElementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   spaces?: Prisma.spaceElementsUpdateManyWithoutElementNestedInput
 }
@@ -472,6 +505,7 @@ export type ElementUncheckedUpdateWithoutMapElementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
+  static?: Prisma.BoolFieldUpdateOperationsInput | boolean
   imageUrl?: Prisma.StringFieldUpdateOperationsInput | string
   spaces?: Prisma.spaceElementsUncheckedUpdateManyWithoutElementNestedInput
 }
@@ -520,6 +554,7 @@ export type ElementSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   width?: boolean
   height?: boolean
+  static?: boolean
   imageUrl?: boolean
   spaces?: boolean | Prisma.Element$spacesArgs<ExtArgs>
   mapElements?: boolean | Prisma.Element$mapElementsArgs<ExtArgs>
@@ -530,6 +565,7 @@ export type ElementSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   width?: boolean
   height?: boolean
+  static?: boolean
   imageUrl?: boolean
 }, ExtArgs["result"]["element"]>
 
@@ -537,6 +573,7 @@ export type ElementSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
   id?: boolean
   width?: boolean
   height?: boolean
+  static?: boolean
   imageUrl?: boolean
 }, ExtArgs["result"]["element"]>
 
@@ -544,10 +581,11 @@ export type ElementSelectScalar = {
   id?: boolean
   width?: boolean
   height?: boolean
+  static?: boolean
   imageUrl?: boolean
 }
 
-export type ElementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "width" | "height" | "imageUrl", ExtArgs["result"]["element"]>
+export type ElementOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "width" | "height" | "static" | "imageUrl", ExtArgs["result"]["element"]>
 export type ElementInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   spaces?: boolean | Prisma.Element$spacesArgs<ExtArgs>
   mapElements?: boolean | Prisma.Element$mapElementsArgs<ExtArgs>
@@ -566,6 +604,7 @@ export type $ElementPayload<ExtArgs extends runtime.Types.Extensions.InternalArg
     id: string
     width: number
     height: number
+    static: boolean
     imageUrl: string
   }, ExtArgs["result"]["element"]>
   composites: {}
@@ -995,6 +1034,7 @@ export interface ElementFieldRefs {
   readonly id: Prisma.FieldRef<"Element", 'String'>
   readonly width: Prisma.FieldRef<"Element", 'Int'>
   readonly height: Prisma.FieldRef<"Element", 'Int'>
+  readonly static: Prisma.FieldRef<"Element", 'Boolean'>
   readonly imageUrl: Prisma.FieldRef<"Element", 'String'>
 }
     

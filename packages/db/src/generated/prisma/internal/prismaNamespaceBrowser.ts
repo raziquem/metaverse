@@ -114,6 +114,7 @@ export const ElementScalarFieldEnum = {
   id: 'id',
   width: 'width',
   height: 'height',
+  static: 'static',
   imageUrl: 'imageUrl'
 } as const
 
