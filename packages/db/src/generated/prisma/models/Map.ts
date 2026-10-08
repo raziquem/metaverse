@@ -41,6 +41,7 @@ export type MapMinAggregateOutputType = {
   width: number | null
   height: number | null
   name: string | null
+  thumbnail: string | null
 }
 
 export type MapMaxAggregateOutputType = {
@@ -48,6 +49,7 @@ export type MapMaxAggregateOutputType = {
   width: number | null
   height: number | null
   name: string | null
+  thumbnail: string | null
 }
 
 export type MapCountAggregateOutputType = {
@@ -55,6 +57,7 @@ export type MapCountAggregateOutputType = {
   width: number
   height: number
   name: number
+  thumbnail: number
   _all: number
 }
 
@@ -74,6 +77,7 @@ export type MapMinAggregateInputType = {
   width?: true
   height?: true
   name?: true
+  thumbnail?: true
 }
 
 export type MapMaxAggregateInputType = {
@@ -81,6 +85,7 @@ export type MapMaxAggregateInputType = {
   width?: true
   height?: true
   name?: true
+  thumbnail?: true
 }
 
 export type MapCountAggregateInputType = {
@@ -88,6 +93,7 @@ export type MapCountAggregateInputType = {
   width?: true
   height?: true
   name?: true
+  thumbnail?: true
   _all?: true
 }
 
@@ -182,6 +188,7 @@ export type MapGroupByOutputType = {
   width: number
   height: number
   name: string
+  thumbnail: string
   _count: MapCountAggregateOutputType | null
   _avg: MapAvgAggregateOutputType | null
   _sum: MapSumAggregateOutputType | null
@@ -212,6 +219,7 @@ export type MapWhereInput = {
   width?: Prisma.IntFilter<"Map"> | number
   height?: Prisma.IntFilter<"Map"> | number
   name?: Prisma.StringFilter<"Map"> | string
+  thumbnail?: Prisma.StringFilter<"Map"> | string
   mapElements?: Prisma.MapElementsListRelationFilter
 }
 
@@ -220,6 +228,7 @@ export type MapOrderByWithRelationInput = {
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
   mapElements?: Prisma.MapElementsOrderByRelationAggregateInput
 }
 
@@ -231,6 +240,7 @@ export type MapWhereUniqueInput = Prisma.AtLeast<{
   width?: Prisma.IntFilter<"Map"> | number
   height?: Prisma.IntFilter<"Map"> | number
   name?: Prisma.StringFilter<"Map"> | string
+  thumbnail?: Prisma.StringFilter<"Map"> | string
   mapElements?: Prisma.MapElementsListRelationFilter
 }, "id" | "id">
 
@@ -239,6 +249,7 @@ export type MapOrderByWithAggregationInput = {
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
   _count?: Prisma.MapCountOrderByAggregateInput
   _avg?: Prisma.MapAvgOrderByAggregateInput
   _max?: Prisma.MapMaxOrderByAggregateInput
@@ -254,6 +265,7 @@ export type MapScalarWhereWithAggregatesInput = {
   width?: Prisma.IntWithAggregatesFilter<"Map"> | number
   height?: Prisma.IntWithAggregatesFilter<"Map"> | number
   name?: Prisma.StringWithAggregatesFilter<"Map"> | string
+  thumbnail?: Prisma.StringWithAggregatesFilter<"Map"> | string
 }
 
 export type MapCreateInput = {
@@ -261,6 +273,7 @@ export type MapCreateInput = {
   width: number
   height: number
   name: string
+  thumbnail: string
   mapElements?: Prisma.MapElementsCreateNestedManyWithoutMapInput
 }
 
@@ -269,6 +282,7 @@ export type MapUncheckedCreateInput = {
   width: number
   height: number
   name: string
+  thumbnail: string
   mapElements?: Prisma.MapElementsUncheckedCreateNestedManyWithoutMapInput
 }
 
@@ -277,6 +291,7 @@ export type MapUpdateInput = {
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
   mapElements?: Prisma.MapElementsUpdateManyWithoutMapNestedInput
 }
 
@@ -285,6 +300,7 @@ export type MapUncheckedUpdateInput = {
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
   mapElements?: Prisma.MapElementsUncheckedUpdateManyWithoutMapNestedInput
 }
 
@@ -293,6 +309,7 @@ export type MapCreateManyInput = {
   width: number
   height: number
   name: string
+  thumbnail: string
 }
 
 export type MapUpdateManyMutationInput = {
@@ -300,6 +317,7 @@ export type MapUpdateManyMutationInput = {
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MapUncheckedUpdateManyInput = {
@@ -307,6 +325,7 @@ export type MapUncheckedUpdateManyInput = {
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MapCountOrderByAggregateInput = {
@@ -314,6 +333,7 @@ export type MapCountOrderByAggregateInput = {
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
 }
 
 export type MapAvgOrderByAggregateInput = {
@@ -326,6 +346,7 @@ export type MapMaxOrderByAggregateInput = {
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
 }
 
 export type MapMinOrderByAggregateInput = {
@@ -333,6 +354,7 @@ export type MapMinOrderByAggregateInput = {
   width?: Prisma.SortOrder
   height?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  thumbnail?: Prisma.SortOrder
 }
 
 export type MapSumOrderByAggregateInput = {
@@ -364,6 +386,7 @@ export type MapCreateWithoutMapElementsInput = {
   width: number
   height: number
   name: string
+  thumbnail: string
 }
 
 export type MapUncheckedCreateWithoutMapElementsInput = {
@@ -371,6 +394,7 @@ export type MapUncheckedCreateWithoutMapElementsInput = {
   width: number
   height: number
   name: string
+  thumbnail: string
 }
 
 export type MapCreateOrConnectWithoutMapElementsInput = {
@@ -394,6 +418,7 @@ export type MapUpdateWithoutMapElementsInput = {
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type MapUncheckedUpdateWithoutMapElementsInput = {
@@ -401,6 +426,7 @@ export type MapUncheckedUpdateWithoutMapElementsInput = {
   width?: Prisma.IntFieldUpdateOperationsInput | number
   height?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  thumbnail?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 
@@ -439,6 +465,7 @@ export type MapSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = ru
   width?: boolean
   height?: boolean
   name?: boolean
+  thumbnail?: boolean
   mapElements?: boolean | Prisma.Map$mapElementsArgs<ExtArgs>
   _count?: boolean | Prisma.MapCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["map"]>
@@ -448,6 +475,7 @@ export type MapSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extension
   width?: boolean
   height?: boolean
   name?: boolean
+  thumbnail?: boolean
 }, ExtArgs["result"]["map"]>
 
 export type MapSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -455,6 +483,7 @@ export type MapSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extension
   width?: boolean
   height?: boolean
   name?: boolean
+  thumbnail?: boolean
 }, ExtArgs["result"]["map"]>
 
 export type MapSelectScalar = {
@@ -462,9 +491,10 @@ export type MapSelectScalar = {
   width?: boolean
   height?: boolean
   name?: boolean
+  thumbnail?: boolean
 }
 
-export type MapOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "width" | "height" | "name", ExtArgs["result"]["map"]>
+export type MapOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "width" | "height" | "name" | "thumbnail", ExtArgs["result"]["map"]>
 export type MapInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   mapElements?: boolean | Prisma.Map$mapElementsArgs<ExtArgs>
   _count?: boolean | Prisma.MapCountOutputTypeDefaultArgs<ExtArgs>
@@ -482,6 +512,7 @@ export type $MapPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
     width: number
     height: number
     name: string
+    thumbnail: string
   }, ExtArgs["result"]["map"]>
   composites: {}
 }
@@ -910,6 +941,7 @@ export interface MapFieldRefs {
   readonly width: Prisma.FieldRef<"Map", 'Int'>
   readonly height: Prisma.FieldRef<"Map", 'Int'>
   readonly name: Prisma.FieldRef<"Map", 'String'>
+  readonly thumbnail: Prisma.FieldRef<"Map", 'String'>
 }
     
 
