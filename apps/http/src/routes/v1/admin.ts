@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { adminMiddleware } from "../../middleware/admin.js";
-import { CreateElementSchema, UpdateElementSchema } from "../../types/index.js";
+import { CreateAvatarSchema, CreateElementSchema, UpdateElementSchema } from "../../types/index.js";
 import client from "@metaverse/db/client";
 
 export const adminRouter = Router();
@@ -42,8 +42,21 @@ adminRouter.put("/element/:elementId", async (req, res) => {
     res.json({message: "Element updated"})
 })
 
-adminRouter.post("/avatar", (req, res) => {
+adminRouter.post("/avatar", async (req, res) => {
+    const parsedData = CreateAvatarSchema.safeParse(req.body)
 
+    if(!parsedData.success){
+        return res.status(400).json({message: "Validation failed"})
+    }
+
+    const avatar = await client.avatar.create({
+        data: {
+            name: parsedData.data.name,
+            imageUrl: parsedData.data.imageUrl
+        }
+    })
+
+    res.json({id: avatar.id})
 })
 
 adminRouter.post("/map", (req, res) => {
