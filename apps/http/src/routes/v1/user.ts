@@ -10,15 +10,21 @@ userRouter.post("/metadata", userMiddleware, async (req, res) => {
     if(!parsedData.success){
         return res.status(400).json({message: "Validation failed"})
     }
-    await client.user.update({
-        where: {
-            id: req.userId
-        },
-        data: {
-            avatarId: parsedData.data.avatarId
-        }
-    })
-    res.json({message: "Metadata updated"})
+    try {
+        await client.user.update({
+            where: {
+                id: req.userId
+            },
+            data: {
+                avatarId: parsedData.data.avatarId
+            }
+        })
+        res.json({message: "Metadata updated"})
+        
+    } catch (error) {
+        console.log(error)
+        res.status(400).json({message: "Internal server error"})
+    }
 })
 
 userRouter.get("/api/v1/user/metadata/bulk", async (req, res) => {

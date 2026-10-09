@@ -51,12 +51,12 @@ adminRouter.post("/avatar", async (req, res) => {
 
     const avatar = await client.avatar.create({
         data: {
-            name: parsedData.data.name,
-            imageUrl: parsedData.data.imageUrl
+            imageUrl: parsedData.data.imageUrl,
+            name: parsedData.data.name
         }
     })
 
-    res.json({id: avatar.id})
+    res.json({avatarId: avatar.id})
 })
 
 adminRouter.post("/map", async (req, res) => {
