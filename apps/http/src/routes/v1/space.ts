@@ -150,6 +150,10 @@ spaceRouter.post("/element", userMiddleware, async (req, res) => {
         }
     })
     
+    if(req.body.x < 0 || req.body.y < 0 || req.body.x > space?.width! || req.body.y > space?.height!){
+        return res.status(400).json({message: "Coordinates are out of boundary"})
+    }
+
     if(!space){
         return res.status(400).json({message: "Space not found"})
     }
