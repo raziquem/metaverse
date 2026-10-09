@@ -71,7 +71,7 @@ adminRouter.post("/map", async (req, res) => {
             name: parsedData.data.name,
             thumbnail: parsedData.data.thumbnail,
             width: Number(parsedData.data.dimensions.split("x")[0]),
-            height: Number(parsedData.data.dimensions.split("y")[1]),
+            height: Number(parsedData.data.dimensions.split("x")[1]),
             mapElements: {
                 create: parsedData.data.defaultElements.map(e => ({
                     elementId: e.elementId,
@@ -81,6 +81,5 @@ adminRouter.post("/map", async (req, res) => {
             }
         }
     })
-
     res.json({id: map.id})
 })
