@@ -4,8 +4,9 @@ import { CreateAvatarSchema, CreateElementSchema, CreateMapSchema, UpdateElement
 import client from "@metaverse/db/client";
 
 export const adminRouter = Router();
+adminRouter.use(adminMiddleware)
 
-adminRouter.post("/element", adminMiddleware, async (req, res) => {
+adminRouter.post("/element", async (req, res) => {
     const parsedData = CreateElementSchema.safeParse(req.body) 
 
     if(!parsedData.success){
