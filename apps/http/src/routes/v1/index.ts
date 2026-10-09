@@ -60,7 +60,7 @@ router.post("/signin", async (req, res) => {
         }
         
         const token = jwt.sign({
-            user: user.id,
+            userId: user.id,
             role: user.role
         }, JWT_PASSWORD);
 
