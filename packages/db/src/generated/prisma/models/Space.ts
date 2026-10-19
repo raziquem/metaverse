@@ -193,7 +193,7 @@ export type SpaceGroupByOutputType = {
   id: string
   name: string
   width: number
-  height: number | null
+  height: number
   thumbnail: string | null
   creatorID: string
   _count: SpaceCountAggregateOutputType | null
@@ -225,7 +225,7 @@ export type SpaceWhereInput = {
   id?: Prisma.StringFilter<"Space"> | string
   name?: Prisma.StringFilter<"Space"> | string
   width?: Prisma.IntFilter<"Space"> | number
-  height?: Prisma.IntNullableFilter<"Space"> | number | null
+  height?: Prisma.IntFilter<"Space"> | number
   thumbnail?: Prisma.StringNullableFilter<"Space"> | string | null
   creatorID?: Prisma.StringFilter<"Space"> | string
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -236,7 +236,7 @@ export type SpaceOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   width?: Prisma.SortOrder
-  height?: Prisma.SortOrderInput | Prisma.SortOrder
+  height?: Prisma.SortOrder
   thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorID?: Prisma.SortOrder
   creator?: Prisma.UserOrderByWithRelationInput
@@ -250,7 +250,7 @@ export type SpaceWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.SpaceWhereInput | Prisma.SpaceWhereInput[]
   name?: Prisma.StringFilter<"Space"> | string
   width?: Prisma.IntFilter<"Space"> | number
-  height?: Prisma.IntNullableFilter<"Space"> | number | null
+  height?: Prisma.IntFilter<"Space"> | number
   thumbnail?: Prisma.StringNullableFilter<"Space"> | string | null
   creatorID?: Prisma.StringFilter<"Space"> | string
   creator?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
@@ -261,7 +261,7 @@ export type SpaceOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   width?: Prisma.SortOrder
-  height?: Prisma.SortOrderInput | Prisma.SortOrder
+  height?: Prisma.SortOrder
   thumbnail?: Prisma.SortOrderInput | Prisma.SortOrder
   creatorID?: Prisma.SortOrder
   _count?: Prisma.SpaceCountOrderByAggregateInput
@@ -278,7 +278,7 @@ export type SpaceScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Space"> | string
   name?: Prisma.StringWithAggregatesFilter<"Space"> | string
   width?: Prisma.IntWithAggregatesFilter<"Space"> | number
-  height?: Prisma.IntNullableWithAggregatesFilter<"Space"> | number | null
+  height?: Prisma.IntWithAggregatesFilter<"Space"> | number
   thumbnail?: Prisma.StringNullableWithAggregatesFilter<"Space"> | string | null
   creatorID?: Prisma.StringWithAggregatesFilter<"Space"> | string
 }
@@ -287,7 +287,7 @@ export type SpaceCreateInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
   creator: Prisma.UserCreateNestedOneWithoutSpacesInput
   elements?: Prisma.spaceElementsCreateNestedManyWithoutSpaceInput
@@ -297,7 +297,7 @@ export type SpaceUncheckedCreateInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
   creatorID: string
   elements?: Prisma.spaceElementsUncheckedCreateNestedManyWithoutSpaceInput
@@ -307,7 +307,7 @@ export type SpaceUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creator?: Prisma.UserUpdateOneRequiredWithoutSpacesNestedInput
   elements?: Prisma.spaceElementsUpdateManyWithoutSpaceNestedInput
@@ -317,7 +317,7 @@ export type SpaceUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorID?: Prisma.StringFieldUpdateOperationsInput | string
   elements?: Prisma.spaceElementsUncheckedUpdateManyWithoutSpaceNestedInput
@@ -327,7 +327,7 @@ export type SpaceCreateManyInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
   creatorID: string
 }
@@ -336,7 +336,7 @@ export type SpaceUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -344,7 +344,7 @@ export type SpaceUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorID?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -451,14 +451,6 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableIntFieldUpdateOperationsInput = {
-  set?: number | null
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type SpaceCreateNestedOneWithoutElementsInput = {
   create?: Prisma.XOR<Prisma.SpaceCreateWithoutElementsInput, Prisma.SpaceUncheckedCreateWithoutElementsInput>
   connectOrCreate?: Prisma.SpaceCreateOrConnectWithoutElementsInput
@@ -477,7 +469,7 @@ export type SpaceCreateWithoutCreatorInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
   elements?: Prisma.spaceElementsCreateNestedManyWithoutSpaceInput
 }
@@ -486,7 +478,7 @@ export type SpaceUncheckedCreateWithoutCreatorInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
   elements?: Prisma.spaceElementsUncheckedCreateNestedManyWithoutSpaceInput
 }
@@ -524,7 +516,7 @@ export type SpaceScalarWhereInput = {
   id?: Prisma.StringFilter<"Space"> | string
   name?: Prisma.StringFilter<"Space"> | string
   width?: Prisma.IntFilter<"Space"> | number
-  height?: Prisma.IntNullableFilter<"Space"> | number | null
+  height?: Prisma.IntFilter<"Space"> | number
   thumbnail?: Prisma.StringNullableFilter<"Space"> | string | null
   creatorID?: Prisma.StringFilter<"Space"> | string
 }
@@ -533,7 +525,7 @@ export type SpaceCreateWithoutElementsInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
   creator: Prisma.UserCreateNestedOneWithoutSpacesInput
 }
@@ -542,7 +534,7 @@ export type SpaceUncheckedCreateWithoutElementsInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
   creatorID: string
 }
@@ -567,7 +559,7 @@ export type SpaceUpdateWithoutElementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creator?: Prisma.UserUpdateOneRequiredWithoutSpacesNestedInput
 }
@@ -576,7 +568,7 @@ export type SpaceUncheckedUpdateWithoutElementsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   creatorID?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -585,7 +577,7 @@ export type SpaceCreateManyCreatorInput = {
   id?: string
   name: string
   width: number
-  height?: number | null
+  height: number
   thumbnail?: string | null
 }
 
@@ -593,7 +585,7 @@ export type SpaceUpdateWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   elements?: Prisma.spaceElementsUpdateManyWithoutSpaceNestedInput
 }
@@ -602,7 +594,7 @@ export type SpaceUncheckedUpdateWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   elements?: Prisma.spaceElementsUncheckedUpdateManyWithoutSpaceNestedInput
 }
@@ -611,7 +603,7 @@ export type SpaceUncheckedUpdateManyWithoutCreatorInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   width?: Prisma.IntFieldUpdateOperationsInput | number
-  height?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  height?: Prisma.IntFieldUpdateOperationsInput | number
   thumbnail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -710,7 +702,7 @@ export type $SpacePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     id: string
     name: string
     width: number
-    height: number | null
+    height: number
     thumbnail: string | null
     creatorID: string
   }, ExtArgs["result"]["space"]>

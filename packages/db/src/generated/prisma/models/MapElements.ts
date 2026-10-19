@@ -453,6 +453,14 @@ export type MapElementsUncheckedUpdateManyWithoutMapNestedInput = {
   deleteMany?: Prisma.MapElementsScalarWhereInput | Prisma.MapElementsScalarWhereInput[]
 }
 
+export type NullableIntFieldUpdateOperationsInput = {
+  set?: number | null
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
+}
+
 export type MapElementsCreateWithoutElementInput = {
   id?: string
   x?: number | null
